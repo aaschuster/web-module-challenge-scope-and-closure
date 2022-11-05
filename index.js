@@ -13,9 +13,7 @@
  * 
  * The following code is demonstrating a way of completing this task
  * It returns the string `foofoo`
-*/
-
-function processFirstItem(stringList, callback) {
+*/function processFirstItem(stringList, callback) {
   return callback(stringList[0])
 }
 console.log('example task:', processFirstItem(['foo','bar'],function(str){return str+str}));
@@ -30,11 +28,17 @@ console.log('example task:', processFirstItem(['foo','bar'],function(str){return
   Study the code for counter1 and counter2, then answer the questions below.
   
   1. What is the difference between counter1 and counter2?
+
+  Counter 1 returns the counter() function where counter 2 just returns count.
   
   2. Which of the two uses a closure? How can you tell?
+
+  Counter1 uses a closure. We can tell because it contains the variable count inside of the function whereas counter2 just has it in global scope.
   
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
+
+     Counter1 would be better wherever we need to call a function and have it hold the value from before and counter2 would be better if we need the counter reset everytime we invoke the function again.
 */
 
 // counter1 code
@@ -64,10 +68,9 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning(){
+    return Math.round(Math.random()*2);
 }
-
 
 /* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
 Use the finalScore function below to do the following:
@@ -83,9 +86,22 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*Code Here*/){
-  /*Code Here*/
+function finalScore(inning, totalInnings){
+let homeScore = 0;
+let awayScore = 0;
+
+  for(let i=0; i<totalInnings; i++) {
+    homeScore += inning();
+    awayScore += inning();
+  }
+  const obj = {
+    Away: awayScore,
+    Home: homeScore
+  }
+  return obj;
 }
+
+console.log(finalScore(inning, 9));
 
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
@@ -101,10 +117,15 @@ For example: invoking getInningScore(inning) might return this object:
   */
 
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
+function getInningScore(inning) {
+  const obj = {}
 
+  obj.Home = inning();
+  obj.Away = inning();
+  return obj;
 }
+
+getInningScore(inning);
 
 
 /* STRETCH: ⚾️⚾️⚾️ Task 5: scoreboard() ⚾️⚾️⚾️
