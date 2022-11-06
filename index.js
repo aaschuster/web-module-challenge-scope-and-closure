@@ -171,13 +171,14 @@ function scoreboard(getInningScore, inning, numOfInnings) {
   const array = [];
   let awayScore = 0;
   let homeScore = 0;
+  
    for(let i = 0; i<numOfInnings; i++) {
-    const obj = getInningScore;
+    let thisInningAwayScore = inning();
+    let thisInningHomeScore = inning();
+    awayScore += thisInningAwayScore;
+    homeScore += thisInningHomeScore;
 
-    awayScore += obj.Away;
-    homeScore += obj.Home;
-
-    array.push("Inning " + numOfInnings + ": Away " + obj.Away + " - Home " + obj.Home);
+    array.push("Inning " + (i+1) + ": Away " + thisInningAwayScore + " - Home " + thisInningHomeScore);
    }
    if(awayScore===homeScore) {
     array.push("This game will require extra innings: Away " + awayScore + " - Home " + homeScore);
