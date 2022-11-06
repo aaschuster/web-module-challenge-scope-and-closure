@@ -86,13 +86,13 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(inning, totalInnings){
+function finalScore(inningCB, totalInnings){
 let homeScore = 0;
 let awayScore = 0;
 
   for(let i=0; i<totalInnings; i++) {
-    homeScore += inning();
-    awayScore += inning();
+    homeScore += inningCB();
+    awayScore += inningCB();
   }
   const obj = {
     Away: awayScore,
@@ -116,12 +116,10 @@ For example: invoking getInningScore(inning) might return this object:
 }
   */
 
-
-function getInningScore(inning) {
+function getInningScore(inningCB){
   const obj = {}
-
-  obj.Home = inning();
-  obj.Away = inning();
+  obj.Home = inningCB();
+  obj.Away = inningCB();
   return obj;
 }
 
@@ -168,11 +166,28 @@ Use the scoreboard function below to do the following:
   "This game will require extra innings: Away 10 - Home 10"
 ] */
 // NOTE: There is no test associated with this code; if your output matches the given example, consider it complete!
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+
+function scoreboard(getInningScore, inning, numOfInnings) {
+  const array = [];
+  let awayScore = 0;
+  let homeScore = 0;
+   for(let i = 0; i<numOfInnings; i++) {
+    const obj = getInningScore;
+
+    awayScore += obj.Away;
+    homeScore += obj.Home;
+
+    array.push("Inning " + numOfInnings + ": Away " + obj.Away + " - Home " + obj.Home);
+   }
+   if(awayScore===homeScore) {
+    array.push("This game will require extra innings: Away " + awayScore + " - Home " + homeScore);
+   } else {
+    array.push("Final Score: Away " + awayScore + " - Home " + homeScore);
+   }
+   return array;
 }
 
-
+console.log(scoreboard(getInningScore, inning, 9));
 
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
